@@ -1,5 +1,4 @@
 name: Build and Push Docker Image to Docker Hub
-
 on:
   push:
     branches:
@@ -9,14 +8,12 @@ on:
   pull_request:
     branches:
       - 'master'
-
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
   TEST_TAG: ${{ github.repository }}:test
-  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,8 +36,7 @@ jobs:
           context: .
           load: true
           tags: ${{ env.TEST_TAG }}
-      -
-        name: Docker meta
+      - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
         with:
